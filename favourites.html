@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Access your personalized collection of saved tracks. View and manage all the songs you've favorited while browsing Music By Mood.">
+<title>My Favourites</title>
+<style>
+      body {
+    font-family: 'Inter', Arial, sans-serif;
+    background-color: #f0f2f5;
+    padding: 30px;
+    color: #111;
+  }
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #1c1c1c;
+  }
+
+  .genre-group {
+    margin-top: 30px;
+  }
+
+  .genre-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #222;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 15px;
+  }
+
+  li {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  li:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+  }
+
+  .song-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .song-info img {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  .song-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .song-title {
+    font-weight: 600;
+    color: #111;
+    font-size: 1rem;
+  }
+
+  .song-genre {
+    font-size: 0.875rem;
+    color: #666;
+  }
+
+  button {
+    cursor: pointer;
+    background-color: #ff4d4f;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+
+  button:hover {
+    background-color: #e33b3b;
+  }
+</style>
+</head>
+<body>
+<h1>🎵 Your Favourites 🎵</h1>
+<button id="clearFavouritesBtn">Clear All Favourites</button>
+<div id="favouritesList"></div>
+
+<script>
+
+function loadFavourites() {
+    const favDiv = document.getElementById("favouritesList");
+    // Get the list of song OBJECTS from localStorage
+    let favourites = JSON.parse(localStorage.getItem("favourites")) || [];
+
+    favDiv.innerHTML = "";
+
+    if (favourites.length === 0) {
+        favDiv.innerHTML = "<p>You have no favourites yet.</p>";
+        return;
+    }
+
+    const grouped = {};
+
+    // 1. Group the objects by genre
+    favourites.forEach(song => {
+        const genre = song.genre || "Other"; 
+        if (!grouped[genre]) grouped[genre] = [];
+        grouped[genre].push(song);
+    });
+
+    // 2. Display the groups
+    Object.keys(grouped).forEach(genre => {
+        const groupDiv = document.createElement("div");
+        groupDiv.classList.add("genre-group");
+
+        const genreTitle = document.createElement("div");
+        genreTitle.classList.add("genre-title");
+        genreTitle.textContent = genre.charAt(0).toUpperCase() + genre.slice(1);
+
+        const ul = document.createElement("ul");
+
+        grouped[genre].forEach(song => {
+            const li = document.createElement("li");
+            
+            // Create a nice display for the song
+            li.innerHTML = `
+                <div class="song-info">
+                    <div class="song-text">
+                        <span class="song-title">${song.title}</span>
+                        <span class="song-genre">${song.artist}</span>
+                    </div>
+                </div>
+            `;
+
+            // Remove Button
+            const removeBtn = document.createElement("button");
+            removeBtn.textContent = "Remove";
+            removeBtn.addEventListener("click", () => {
+                removeFavourite(song.title, song.artist);
+            });
+
+            li.appendChild(removeBtn);
+            ul.appendChild(li);
+        });
+
+        groupDiv.appendChild(genreTitle);
+        groupDiv.appendChild(ul);
+        favDiv.appendChild(groupDiv);
+    });
+}
+
+// Remove function to handle objects
+function removeFavourite(title, artist) {
+    let favourites = JSON.parse(localStorage.getItem("favourites")) || [];
+    
+    // Filter out the song that matches both title and artist
+    favourites = favourites.filter(song => !(song.title === title && song.artist === artist));
+
+    localStorage.setItem("favourites", JSON.stringify(favourites));
+    loadFavourites();
+}
+
+function clearFavourites() {
+    if(confirm("Are you sure you want to clear all favourites?")) {
+        localStorage.removeItem("favourites");
+        loadFavourites();
+    }
+}
+
+document.getElementById("clearFavouritesBtn").addEventListener("click", clearFavourites);
+
+window.onload = loadFavourites;
+</script>
+<footer style="margin-top: 50px; padding: 20px; border-top: 1px solid #ccc;">
+  <p>&copy; 2026 Music By Mood. Follow us for more vibes! @musicbymood</p>
+</footer>
+</body>
+</html>

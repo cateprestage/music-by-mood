@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore a wide variety of music genres from Pop and Rock to Indie and Country. Discover top artists and the history of your favorite sounds.">
+  <title>Genres - Music By Mood</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Grid Layout for Genre Cards */
+    .genre-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 20px 0;
+    }
+
+    /* Card Styling */
+    .genre-card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      transition: 0.2s;
+      text-align: center;
+    }
+
+    .genre-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+    }
+
+    .genre-icon {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      margin: 5px 0 10px;
+      color: #1c1c1c;
+    }
+
+    .intro {
+      color: #555;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .genre-card p {
+      color: #555;
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+
+    /* Artist Links */
+    .artist-links a {
+      color: #ff4d4f;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .artist-links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="banner">
+    <h1>Music Genres</h1>
+
+  <!-- Nav -->
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="genres.html" style="background-color:#fff; color:#ff4d4f;">Genres</a>
+    <a href="newreleases.html">New Releases</a>
+    <a href="contact.html">Connect With Us</a>
+  </nav>
+</header>
+
+<div class="container">
+  <p class="intro">Explore different music genres and discover popular artists.</p>
+
+  <!-- Cards -->
+  <div class="genre-container">
+
+    <div class="genre-card">
+      <div class="genre-icon">🎤</div>
+      <h2>Pop</h2>
+      <p>Popular music with catchy melodies and wide appeal.</p>
+      <p>
+        <a href="https://open.spotify.com/artist/06HL4z0CvFAxyc27GXpf02" target="_blank">Taylor Swift</a>,
+        <a href="https://open.spotify.com/artist/6M2wZ9GZgrQXHCFfjv46we" target="_blank">Dua Lipa</a>,
+        <a href="https://open.spotify.com/artist/74KM79TiuVKeVCqs8QtB0B" target="_blank">Sabrina Carpenter</a>
+      </p>
+    </div>
+
+    <div class="genre-card">
+      <div class="genre-icon">🎸</div>
+      <h2>Rock</h2>
+      <p>Energetic music featuring guitars and strong vocals.</p>
+      <p>
+        <a href="https://open.spotify.com/artist/711MCceyCBcFnzjGY4Q7Un" target="_blank">AC/DC</a>,
+        <a href="https://open.spotify.com/artist/3qm84nBOXUEQ2vnTfUTTFC" target="_blank">Guns N' Roses</a>,
+        <a href="https://open.spotify.com/artist/58lV9VcRSjABbAbfWS6skp" target="_blank">Bon Jovi</a>
+      </p>
+    </div>
+
+    <div class="genre-card">
+      <div class="genre-icon">🎧</div>
+      <h2>Indie</h2>
+      <p>Alternative music often produced independently.</p>
+      <p>
+        <a href="https://open.spotify.com/artist/7Ln80lUS6He07XvHI8qqHH" target="_blank">Arctic Monkeys</a>,
+        <a href="https://open.spotify.com/artist/3mIj9lX2MWuHmhNCA7LSCW" target="_blank">The 1975</a>,
+        <a href="https://open.spotify.com/artist/77SW9BnxLY8rJ0RciFqkHh" target="_blank">The Neighbourhood</a>
+      </p>
+    </div>
+
+    <div class="genre-card">
+      <div class="genre-icon">🤠</div>
+      <h2>Country</h2>
+      <p>Storytelling music often focused on life and emotions.</p>
+      <p>
+        <a href="https://open.spotify.com/artist/5e4Dhzv426EvQe3aDb64jL" target="_blank">Shania Twain</a>,
+        <a href="https://open.spotify.com/artist/40ZNYROS4zLfyyBSs2PGe2" target="_blank">Zach Bryan</a>,
+        <a href="https://open.spotify.com/artist/4oUHIQIBe0LHzYfvXNW4QM" target="_blank">Morgan Wallen</a>,
+        <a href="https://open.spotify.com/artist/5oC9z3o2w0sZ2y8w9mB0d0" target="_blank">Megan Moroney</a>
+      </p>
+    </div>
+
+  </div>
+<footer style="margin-top: 50px; padding: 20px; border-top: 1px solid #ccc;">
+  <p>&copy; 2026 Music By Mood. Follow us for more vibes! @musicbymood</p>
+</footer>
+</body>
+</html>

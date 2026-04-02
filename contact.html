@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Have a song suggestion that fits a specific mood? Connect with us and share your music recommendations through our contact form.">
+  <title> Contact Us - Music By Mood</title> 
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="banner">
+    <h1>Connect With Us</h1>
+    <nav> 
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="genres.html">Genres</a>
+      <a href="newreleases.html">New Releases</a>
+      <a href="contact.html" style="background-color:#fff; color:#ff4d4f;">Connect With Us</a>
+    </nav>
+  </header> 
+
+  <div class="container">
+    <h2>Song Suggestion Form</h2>
+    <p>Have a song that perfectly fits a mood? Let us know!</p>
+
+    <form id="suggestionForm" novalidate>
+<div style="margin-bottom: 15px ; text-align: left;"> 
+  <label for= "userName">Full Name:</label>
+<input type="text" id="userName" style="width: 100%; padding:8px; margin-top:5px; border-radius:8px; border:1px solid #ccc;">
+</div>
+
+<div style="margin-bottom: 15px; text align: left;">
+  <label for="userEmail">Email Address:</label>
+  <input type="email" id="userEmail" style="width:100%; padding:8px; margin-top:5px; border-radius:8px; border:1px solid #ccc;">
+</div>
+
+<div style="margin-bottom: 15px; text-align: left;">
+        <label for="songGenre">Preferred Genre:</label>
+        <select id="songGenre" style="width:100%; padding:8px; margin-top:5px; border-radius:8px; border:1px solid #ccc;">
+          <option value="">-- Please Select --</option>
+          <option value="pop">Pop</option>
+          <option value="rock">Rock</option>
+          <option value="indie">Indie</option>
+          <option value="country">Country</option>
+        </select>
+      </div>
+
+      <div style="margin-bottom: 15px; text-align: left;">
+        <label for="userMessage">Message/Song Suggestion:</label>
+        <textarea id="userMessage" rows="4" style="width:100%; padding:8px; margin-top:5px; border-radius:8px; border:1px solid #ccc;"></textarea>
+      </div>
+
+      <button type="submit" id="submitBtn">Send Suggestion</button>
+    </form>
+    <div id="formFeedback" style="margin-top: 20px; font-weight: bold;"></div>
+  </div>
+
+  <script src="contact-logic.js"></script>
+</body>
+</html>

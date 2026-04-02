@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Stay up to date with the latest hits. Browse live new song and album releases pulled directly from the iTunes charts.">
+<title>New Releases</title>
+
+<link rel="stylesheet" href="style.css">
+  <style>
+    /* Specific styles for this page's list layout */
+    ul { list-style: none; padding: 0; margin: 0 auto; max-width: 800px; }
+    li {
+        background: #fff;
+        padding: 15px 20px;
+        margin: 12px 0;
+        border-radius: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        transition: 0.2s;
+    }
+    li:hover { transform: translateY(-2px); }
+    h2 { margin-top: 40px; color: #1c1c1c; }
+    .emoji-link { font-size: 1.5rem; text-decoration: none; }
+  </style>
+</head>
+
+<body>
+
+  <header class="banner">
+    <h1>🔥 New Releases 🔥</h1>
+    
+    <nav> 
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="genres.html">Genres</a>
+      <a href="newreleases.html" style="background-color:#fff; color:#ff4d4f;">New Releases</a>
+      <a href="contact.html">Connect With Us</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <p>Check out the latest tracks and albums hitting the charts this week.</p>
+
+    <h2>🎵 New Songs 🎵</h2>
+    <div id="songsList"></div>
+
+    <h2>💿 New Albums 💿</h2>
+    <div id="albumsList"></div>
+  </div>
+
+  <script>
+        async function loadNewReleases() {
+    const songsContainer = document.getElementById("songsList");
+    const albumsContainer = document.getElementById("albumsList");
+    
+    // Clear the "Loading..." state if you add one
+    songsContainer.innerHTML = '<ul></ul>';
+    albumsContainer.innerHTML = '<ul></ul>';
+
+    const songsUl = songsContainer.querySelector("ul");
+    const albumsUl = albumsContainer.querySelector("ul");
+
+    // This is the API URL - searching for recent tracks
+    const apiUrl = "https://itunes.apple.com/search?term=sabrina+carpenter&entity=song&limit=5";
+
+    try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+
+        data.results.forEach(item => {
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <div style="display:flex; align-items:center; gap:15px;">
+                    <img src="${item.artworkUrl60}" style="border-radius:4px;" alt="cover">
+                    <div>
+                        <span style="font-weight:600; display:block;">${item.trackName}</span>
+                        <span style="font-size:0.8rem; color:#666;">${item.artistName}</span>
+                    </div>
+                </div>
+                <a href="${item.trackViewUrl}" target="_blank" class="emoji-link">🎧</a>
+            `;
+            songsUl.appendChild(li);
+        });
+
+        // Repeat or change search term for Albums
+        const albumResponse = await fetch("https://itunes.apple.com/search?term=lana+del+rey&entity=album&limit=3");
+        const albumData = await albumResponse.json();
+
+        albumData.results.forEach(album => {
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <div style="display:flex; align-items:center; gap:15px;">
+                    <img src="${album.artworkUrl60}" style="border-radius:4px;" alt="cover">
+                    <div>
+                        <span style="font-weight:600; display:block;">${album.collectionName}</span>
+                        <span style="font-size:0.8rem; color:#666;">${album.artistName}</span>
+                    </div>
+                </div>
+                <a href="${album.collectionViewUrl}" target="_blank" class="emoji-link">💿</a>
+            `;
+            albumsUl.appendChild(li);
+        });
+
+    } catch (error) {
+        console.error("API Error:", error);
+        songsContainer.innerHTML = "<p>Unable to load live releases at this time.</p>";
+    }
+}
+
+window.onload = loadNewReleases;
+</script>
+<footer style="margin-top: 50px; padding: 20px; border-top: 1px solid #ccc;">
+  <p>&copy; 2026 Music By Mood. Follow us for more vibes! @musicbymood</p>
+</footer>
+</body>
+</html>
