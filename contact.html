@@ -23,20 +23,21 @@
     <h2>Song Suggestion Form</h2>
     <p>Have a song that perfectly fits a mood? Let us know!</p>
 
-   <form action="https://formspree.io/f/xykbdbzy" method="POST">
-<div style="margin-bottom: 15px ; text-align: left;"> 
-  <label for= "userName">Full Name:</label>
-<input type="text" id="userName" style="width: 100%; padding:8px; margin-top:5px; border-radius:8px; border:1px solid #ccc;">
-</div>
+    <form action="https://formspree.io/f/xykbdbzy" method="POST">
+      
+      <div style="margin-bottom: 15px ; text-align: left;"> 
+        <label for="userName">Full Name:</label>
+        <input type="text" name="name" id="userName" style="width: 100%; padding:8px; margin-top:5px; border-radius:8px; border:1px solid #ccc;" required>
+      </div>
 
-<div style="margin-bottom: 15px; text align: left;">
-  <label for="userEmail">Email Address:</label>
-  <input type="email" id="userEmail" style="width:100%; padding:8px; margin-top:5px; border-radius:8px; border:1px solid #ccc;">
-</div>
+      <div style="margin-bottom: 15px; text-align: left;">
+        <label for="userEmail">Email Address:</label>
+        <input type="email" name="email" id="userEmail" style="width:100%; padding:8px; margin-top:5px; border-radius:8px; border:1px solid #ccc;" required>
+      </div>
 
-<div style="margin-bottom: 15px; text-align: left;">
+      <div style="margin-bottom: 15px; text-align: left;">
         <label for="songGenre">Preferred Genre:</label>
-        <select id="songGenre" style="width:100%; padding:8px; margin-top:5px; border-radius:8px; border:1px solid #ccc;">
+        <select name="genre" id="songGenre" style="width:100%; padding:8px; margin-top:5px; border-radius:8px; border:1px solid #ccc;">
           <option value="">-- Please Select --</option>
           <option value="pop">Pop</option>
           <option value="rock">Rock</option>
@@ -47,14 +48,12 @@
 
       <div style="margin-bottom: 15px; text-align: left;">
         <label for="userMessage">Message/Song Suggestion:</label>
-        <textarea id="userMessage" rows="4" style="width:100%; padding:8px; margin-top:5px; border-radius:8px; border:1px solid #ccc;"></textarea>
+        <textarea name="message" id="userMessage" rows="4" style="width:100%; padding:8px; margin-top:5px; border-radius:8px; border:1px solid #ccc;" required></textarea>
       </div>
 
       <button type="submit" id="submitBtn">Send Suggestion</button>
     </form>
-    <div id="formFeedback" style="margin-top: 20px; font-weight: bold;"></div>
   </div>
 
-  <script src="contact-logic.js"></script>
-</body>
+  </body>
 </html>
