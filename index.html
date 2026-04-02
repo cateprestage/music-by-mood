@@ -4,57 +4,58 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Find the perfect music for your mood. Music By Mood helps you discover songs based on how you feel and your favorite genres.">
-<meta name="keywords" content="Music, Mood, Playlist, Pop, Rock, Indie, Song Recommendations">
-<title> Music By Mood </title>
-<link rel="stylesheet" href="style.css">
+  <meta name="keywords" content="Music, Mood, Playlist, Pop, Rock, Indie, Song Recommendations">
+  <title> Music By Mood </title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-<header class="banner">
-<h1> 🎵 Music By Mood 🎵 </h1>
+  <header class="banner">
+    <h1> 🎵 Music By Mood 🎵 </h1>
+    <nav> 
+      <a href="index.html" style="background-color:#fff; color:#ff4d4f;">Home</a>
+      <a href="about.html">About</a>
+      <a href="genres.html">Genres</a>
+      <a href="newreleases.html">New Releases</a>
+      <a href="contact.html">Connect With Us</a>
+    </nav>
+  </header>
 
-<nav> 
-<a href="index.html" style="background-color:#fff; color:#ff4d4f;">Home</a>
-<a href="about.html">About</a>
-<a href="genres.html">Genres</a>
-<a href="newreleases.html">New Releases</a>
-<a href="contact.html">Connect With Us</a>
-</nav>
-</header>
+  <div class="container">
+    <p> Welcome to Music by Mood, your one stop shop for all your music needs no matter your mood. Use this website to find the right music for your current mood. By following my quick and easy steps and simply selecting your mood and your genre of choice, I can recommend songs to match your vibe! </p>
 
-<div class="container">
+    <h2>1. Choose a Mood </h2> 
+    <p> By selecting a mood I will be able to better match your vibe to the song recommendations </p>
 
-<p> Welcome to Music by Mood, your one stop shop for all your music needs no matter your mood. Use this website to to find the right music for your current mood. By following my quick and easy steps and simply selecting your mood and your genre of choice, I can recommend songs to match your vibe! </p>
+    <div id="mood-buttons">
+      <button class="mood-btn" data-mood="happy">Happy</button>
+      <button class="mood-btn" data-mood="chill">Chill</button>
+      <button class="mood-btn" data-mood="energetic">Energetic</button>
+      <button class="mood-btn" data-mood="sad">Sad</button>
+      <button class="mood-btn" data-mood="romance">Romance</button>
+    </div>
 
-<h2>1. Choose a Mood </h2> 
-<p> By selecting a mood I will be able to better match your vibe to the song recommendations </p>
+    <h2>2. Choose a Genre</h2>
+    <p> By selecting a genre I can make sure that the song recommendations align with your mood and genre perfectly</p>
+    
+    <div id="genre-buttons">
+      <button class="genre-btn" data-genre="pop">Pop</button>
+      <button class="genre-btn" data-genre="rock">Rock</button>
+      <button class="genre-btn" data-genre="indie">Indie</button>
+      <button class="genre-btn" data-genre="romance">Love</button>
+      <button class="genre-btn" data-genre="acoustic">Sad</button>
+      <button class="genre-btn" data-genre="country">Country</button>
+    </div>
 
-<div id="mood-buttons">
-  <button data-mood="happy">Happy</button>
-  <button data-mood="chill">Chill</button>
-  <button data-mood="energetic">Energetic</button>
-  <button data-mood="sad">Sad</button>
-  <button data-mood="romance">Romance</button>
-</div>
+    <button id="viewFavouritesBtn">View Favourites</button>
+    <h2> Recommended Songs </h2>
+    <div id="results"></div>
+  </div>
 
-<h2>2. Choose a Genre</h2>
-<p> By selecting a genre I can make sure that the song recommendations align with your mood and genre perfectly</p>
-<div id="genre-buttons">
-  <button data-genre="pop">Pop</button>
-  <button data-genre="rock">Rock</button>
-  <button data-genre="indie">Indie</button>
-  <button data-genre="love">Love</button>
-  <button data-genre="sad">Sad</button>
-  <button data-genre="country">Country</button>
-</div>
-
-<button id="viewFavouritesBtn">View Favourites</button>
-<h2> Recommended Songs </h2>
-<div id="results"></div>
-</div>
-<script src="script.js"></script>
-<footer style="margin-top: 50px; padding: 20px; border-top: 1px solid #ccc;">
-  <p>&copy; 2026 Music By Mood. Follow us for more vibes! @musicbymood</p>
-</footer>
+  <script src="script.js"></script>
+  
+  <footer style="margin-top: 50px; padding: 20px; border-top: 1px solid #ccc;">
+    <p>&copy; 2026 Music By Mood. Follow us for more vibes! @musicbymood</p>
+  </footer>
 </body>
 </html>
