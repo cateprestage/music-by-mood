@@ -249,10 +249,10 @@ async function updateRecommendations() {
 function saveFavourite(title, artist) {
     let favourites = JSON.parse(localStorage.getItem("favourites")) || [];
     
-    // Find the full song object from my array
+    /* Find the full song object from my array*/
     const songObj = songs.find(s => s.title === title && s.artist === artist);
     
-    // Check if it's already there (using a unique string)
+    
     const songIndex = favourites.findIndex(f => f.title === title && f.artist === artist);
 
     if (songIndex === -1) {

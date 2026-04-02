@@ -85,7 +85,7 @@
             songsUl.appendChild(li);
         });
 
-        // Repeat or change search term for Albums
+        /* Repeat or change search term for Albums*/
         const albumResponse = await fetch("https://itunes.apple.com/search?term=lana+del+rey&entity=album&limit=3");
         const albumData = await albumResponse.json();
 

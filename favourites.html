@@ -109,7 +109,7 @@
 
 function loadFavourites() {
     const favDiv = document.getElementById("favouritesList");
-    // Get the list of song OBJECTS from localStorage
+    /* Get the list of song OBJECTS from localStorage*/
     let favourites = JSON.parse(localStorage.getItem("favourites")) || [];
 
     favDiv.innerHTML = "";
@@ -121,14 +121,14 @@ function loadFavourites() {
 
     const grouped = {};
 
-    // 1. Group the objects by genre
+    /*1. Grouped by genre*/
     favourites.forEach(song => {
         const genre = song.genre || "Other"; 
         if (!grouped[genre]) grouped[genre] = [];
         grouped[genre].push(song);
     });
 
-    // 2. Display the groups
+    /* 2. Display groups*/
     Object.keys(grouped).forEach(genre => {
         const groupDiv = document.createElement("div");
         groupDiv.classList.add("genre-group");
@@ -142,7 +142,7 @@ function loadFavourites() {
         grouped[genre].forEach(song => {
             const li = document.createElement("li");
             
-            // Create a nice display for the song
+            /* Create a nice display for the song*/
             li.innerHTML = `
                 <div class="song-info">
                     <div class="song-text">
@@ -152,7 +152,7 @@ function loadFavourites() {
                 </div>
             `;
 
-            // Remove Button
+            /* Remove Button*/
             const removeBtn = document.createElement("button");
             removeBtn.textContent = "Remove";
             removeBtn.addEventListener("click", () => {
@@ -169,11 +169,10 @@ function loadFavourites() {
     });
 }
 
-// Remove function to handle objects
 function removeFavourite(title, artist) {
     let favourites = JSON.parse(localStorage.getItem("favourites")) || [];
     
-    // Filter out the song that matches both title and artist
+    /* Filter out the song that matches both title and artist*/
     favourites = favourites.filter(song => !(song.title === title && song.artist === artist));
 
     localStorage.setItem("favourites", JSON.stringify(favourites));
