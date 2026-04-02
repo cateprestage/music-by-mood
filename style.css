@@ -88,18 +88,16 @@ button.selected {
   color: white;
 }
 
-/* ===== RESULTS ===== */
+/* ===== RESULTS & SONG LISTS ===== */
 #results {
   margin-top: 20px;
 }
 
-/* ===== SONG LIST ===== */
 #results ul {
   list-style: none;
   padding: 0;
 }
 
-/* SONG CARD */
 #results li {
   background: white;
   margin: 12px auto;
@@ -119,14 +117,12 @@ button.selected {
   box-shadow: 0 6px 14px rgba(0,0,0,0.12);
 }
 
-/* LEFT SIDE (IMAGE + TEXT) */
 .song-card {
   display: flex;
   align-items: center;
   gap: 15px;
 }
 
-/* COVER IMAGE */
 .cover {
   width: 60px;
   height: 60px;
@@ -134,7 +130,6 @@ button.selected {
   object-fit: cover;
 }
 
-/* TEXT INFO */
 .song-info {
   display: flex;
   flex-direction: column;
@@ -151,22 +146,10 @@ button.selected {
   color: #777;
 }
 
-/* RIGHT SIDE ACTIONS */
 .actions {
   display: flex;
   gap: 10px;
   align-items: center;
-}
-
-/* SPOTIFY LINK */
-#results a {
-  text-decoration: none;
-  font-size: 18px;
-}
-
-/* FAVOURITE */
-.favourite {
-  background-color: #e8f5e9 !important;
 }
 
 /* ===== GENRE PAGE GRID ===== */
@@ -204,4 +187,46 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+/* ===== MOBILE RESPONSIVENESS ===== */
+@media (max-width: 600px) {
+  .banner {
+    padding: 40px 15px; /* Smaller header for phones */
+  }
+
+  .banner h1 {
+    font-size: 1.8rem; /* Prevents title from taking over screen */
+  }
+
+  nav {
+    flex-direction: column; /* Stack menu items vertically */
+    gap: 10px;
+    margin: 20px 0;
+  }
+
+  .container {
+    width: 90%; 
+    padding: 20px;
+  }
+
+  .genre-container {
+    grid-template-columns: 1fr; /* One card per row on mobile */
+    padding: 10px 20px;
+  }
+
+  #results li {
+    width: 95%; 
+    flex-direction: column; /* Stack song info and buttons */
+    text-align: center;
+    gap: 15px;
+  }
+
+  .song-card {
+    flex-direction: column; /* Center the album art and title */
+  }
+
+  .song-info {
+    text-align: center;
+  }
 }
