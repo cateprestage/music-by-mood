@@ -197,28 +197,25 @@ async function recommendSongs() {
         let artworkUrl = "https://via.placeholder.com/60?text=🎵"; 
 
         try {
+            // FIX: Removes slashes for artists like AC/DC so the search doesn't break
             const cleanArtistForSearch = item.artist.replace(/\//g, " ");
             const searchTermFull = encodeURIComponent(`${item.title} ${cleanArtistForSearch}`);
             
-           
-            let response = await fetch(`https://itunes.apple.com/search?term=${searchTermFull}&entity=song&limit=1`);
+            /* IMPORTANT: We search for "musicTrack" instead of "song" 
+               This ensures that results tagged as "Music Video" (like Harry's American Girls) 
+               are correctly found.
+            */
+            let response = await fetch(`https://itunes.apple.com/search?term=${searchTermFull}&entity=musicTrack&limit=1`);
             let data = await response.json();
             
             if (data.results && data.results.length > 0) {
                 artworkUrl = data.results[0].artworkUrl100;
             } else {
-                
-                let resTitle = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(item.title)}&entity=song&limit=1`);
+                // FALLBACK: If full search fails, try searching just the title
+                let resTitle = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(item.title)}&entity=musicTrack&limit=1`);
                 let dataTitle = await resTitle.json();
                 if (dataTitle.results && dataTitle.results.length > 0) {
                     artworkUrl = dataTitle.results[0].artworkUrl100;
-                } else {
-                    
-                    let resArtist = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(cleanArtistForSearch)}&entity=song&limit=1`);
-                    let dataArtist = await resArtist.json();
-                    if (dataArtist.results && dataArtist.results.length > 0) {
-                        artworkUrl = dataArtist.results[0].artworkUrl100;
-                    }
                 }
             }
             item.artwork = artworkUrl;
