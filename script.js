@@ -200,20 +200,20 @@ async function recommendSongs() {
             const cleanArtistForSearch = item.artist.replace(/\//g, " ");
             const searchTermFull = encodeURIComponent(`${item.title} ${cleanArtistForSearch}`);
             
-            // Try 1: Title + Artist
+           
             let response = await fetch(`https://itunes.apple.com/search?term=${searchTermFull}&entity=song&limit=1`);
             let data = await response.json();
             
             if (data.results && data.results.length > 0) {
                 artworkUrl = data.results[0].artworkUrl100;
             } else {
-                // Try 2: Just Title
+                
                 let resTitle = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(item.title)}&entity=song&limit=1`);
                 let dataTitle = await resTitle.json();
                 if (dataTitle.results && dataTitle.results.length > 0) {
                     artworkUrl = dataTitle.results[0].artworkUrl100;
                 } else {
-                    // Try 3: Just Artist (The "Better than Nothing" fallback)
+                    
                     let resArtist = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(cleanArtistForSearch)}&entity=song&limit=1`);
                     let dataArtist = await resArtist.json();
                     if (dataArtist.results && dataArtist.results.length > 0) {
