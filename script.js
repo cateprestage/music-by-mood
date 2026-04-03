@@ -194,30 +194,35 @@ async function recommendSongs() {
     ul.style = "list-style: none; padding: 0; margin: 20px auto; max-width: 800px;";
 
     for (const item of filteredSongs) {
-        let artworkUrl = "https://via.placeholder.com/60?text=🎵"; 
+        let artworkUrl = "https://via.placeholder.com/150?text=🎵"; 
 
         try {
-            // FIX: Removes slashes for artists like AC/DC so the search doesn't break
             const cleanArtistForSearch = item.artist.replace(/\//g, " ");
             const searchTermFull = encodeURIComponent(`${item.title} ${cleanArtistForSearch}`);
             
-            /* IMPORTANT: We search for "musicTrack" instead of "song" 
-               This ensures that results tagged as "Music Video" (like Harry's American Girls) 
-               are correctly found.
-            */
+            
             let response = await fetch(`https://itunes.apple.com/search?term=${searchTermFull}&entity=musicTrack&limit=1`);
             let data = await response.json();
             
             if (data.results && data.results.length > 0) {
                 artworkUrl = data.results[0].artworkUrl100;
             } else {
-                // FALLBACK: If full search fails, try searching just the title
-                let resTitle = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(item.title)}&entity=musicTrack&limit=1`);
-                let dataTitle = await resTitle.json();
-                if (dataTitle.results && dataTitle.results.length > 0) {
-                    artworkUrl = dataTitle.results[0].artworkUrl100;
+                
+                let resGeneral = await fetch(`https://itunes.apple.com/search?term=${searchTermFull}&limit=1`);
+                let dataGeneral = await resGeneral.json();
+                if (dataGeneral.results && dataGeneral.results.length > 0) {
+                    artworkUrl = dataGeneral.results[0].artworkUrl100;
+                } else {
+                    // ATTEMPT 3: Fallback to just Title
+                    let resTitle = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(item.title)}&limit=1`);
+                    let dataTitle = await resTitle.json();
+                    if (dataTitle.results && dataTitle.results.length > 0) {
+                        artworkUrl = dataTitle.results[0].artworkUrl100;
+                    }
                 }
             }
+          
+            artworkUrl = artworkUrl.replace("100x100bb.jpg", "300x300bb.jpg");
             item.artwork = artworkUrl;
         } catch (e) {
             console.log("Cover fetch failed for:", item.title);
